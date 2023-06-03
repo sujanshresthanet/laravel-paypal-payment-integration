@@ -18,11 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('payment', array('as' => 'payment','uses' => 'App\Http\Controllers\PaypalController@payment',));
-// Route::post('cancel', array('as' => 'payment.cancel','uses' => 'App\Http\Controllers\PayPalController@cancel',));
-// Route::get('payment/success', array('as' => 'payment.success','uses' => 'App\Http\Controllers\PayPalController@success',));
-
-
 Route::controller(PaypalController::class)
     ->prefix('paypal')
     ->group(function () {
