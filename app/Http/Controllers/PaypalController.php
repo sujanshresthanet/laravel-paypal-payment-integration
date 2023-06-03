@@ -57,10 +57,12 @@ class PaypalController extends Controller
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request['token']);
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+             \Session::put('success','Payment success !!');
             return redirect()
                 ->route('create.payment')
                 ->with('success', 'Transaction complete.');
         } else {
+            \Session::put('error','Payment failed !!');
             return redirect()
                 ->route('create.payment')
                 ->with('error', $response['message'] ?? 'Something went wrong.');
